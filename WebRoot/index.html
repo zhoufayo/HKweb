@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>视频预览</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--引入CSS文件-->
+  <link rel="stylesheet" href="lib/js/easyui/easyui.css">
+  <link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="lib/css/bootstrap-datetimepicker.min.css" type="text/css">
+  <link rel="stylesheet" href="lib/css/bootstrap-treeview.css">
+  <link rel="stylesheet" href="lib/css/buildpage.css">
+  
+<style type="text/css">
+/* 视频菜单 */
+.menuContainer {
+    position: absolute;
+    top: 101px;
+    left: 0;
+    height: calc(100% - 132px);
+    width: 250px;
+    overflow-x: auto;
+    overflow-y: auto;
+   /*border:1px solid rgba(200,200,200,0.75);*/
+}
+
+/*节点字体大小*/
+.list-group-item{
+	font-size: 12px;
+}
+/*一级节点字体大小*/
+.list-group-item:first-child {
+  //font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<input type="hidden" id="ip">
+<input type="hidden" id="channels">
+<input type="hidden" id="streamtype" value="1"><!--预览    码流类型    1:主码流；2:主码流；3:主码流；4:主码流； -->
+<input type="hidden" id="record_streamtype" value="1"><!--回放	   码流类型    1:主码流；2:子码流； -->
+<input type="hidden" id="ptzspeed" value="4"><!-- 云台速度 -->
+
+<!-- 视频菜单 -->
+<div class=menuContainer>
+<div class="" id="nodeselect"></div>
+</div>
+
+
+<!-- video -->
+<div class="video" id="video">
+	<div id="divPlugin" class="plugin"></div>
+</div>
+<!-- 控制台 -->
+<div id="control" class="videocontrol">
+	<span style="position: absolute; left: 30px; font-size: 16px; font-weight: bolder;">预览</span>
+	<hr width="80%" style="border-top-color: #9E9E9E; position: absolute; top: 5px; left: 30px;"/>
+	
+	<div id="play" class="play" data-toggle="tooltip" title="开始播放" onclick="clickStartRealPlay()"></div>
+	<div id="stop" class="stop" data-toggle="tooltip" title="停止播放" onclick="clickStopRealPlay()"></div>
+	<div id="catpic" class="pic" data-toggle="tooltip" title="抓图" onclick="clickCapturePic()"></div>
+	<div id="view" class="see" data-toggle="tooltip" title="设置路径" onclick="clickOpenFileDlg('previewPicPath', 0)"></div>
+	<div id="focusauto" class="focusauto" data-toggle="tooltip" title="自动聚焦" onclick="null"></div>
+	<div class="leftup" data-toggle="tooltip" title="左上方" onmousedown="mouseDownPTZControl(5)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="up" data-toggle="tooltip" title="上方" onmousedown="mouseDownPTZControl(1)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="rightup" data-toggle="tooltip" title="右上方" onmousedown="mouseDownPTZControl(7)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="left" data-toggle="tooltip" title="左边" onmousedown="mouseDownPTZControl(3)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="around" data-toggle="tooltip" title="巡航" onmousedown="mouseDownPTZControl(9)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="right" data-toggle="tooltip" title="向右" onmousedown="mouseDownPTZControl(4)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="leftdown" data-toggle="tooltip" title="左下" onmousedown="mouseDownPTZControl(6)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="downward" data-toggle="tooltip" title="向下" onmousedown="mouseDownPTZControl(2)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="rightdown" data-toggle="tooltip" title="右下" onmousedown="mouseDownPTZControl(8)" onmouseup="mouseUpPTZControl()" onmouseout="mouseUpPTZControl()"></div>
+	<div class="ZoomIn" data-toggle="tooltip" title="调焦+" onmousedown="PTZZoomIn()" onmouseup="PTZZoomStop()" onmouseout="PTZZoomStop()"></div>
+	<div class="ZoomOut" data-toggle="tooltip" title="调焦-" onmousedown="PTZZoomout()" onmouseup="PTZZoomStop()" onmouseout="PTZZoomStop()"></div>
+	<div class="FocusIn" data-toggle="tooltip" title="聚焦+" onmousedown="PTZFocusIn()" onmouseup="PTZFoucusStop()" onmouseout="PTZFoucusStop()"></div>
+	<div class="FocusOut" data-toggle="tooltip" title="聚焦-" onmousedown="PTZFoucusOut()" onmouseup="PTZFoucusStop()" onmouseout="PTZFoucusStop()"></div>
+	<div class="IrisIn" data-toggle="tooltip" title="光圈+" onmousedown="PTZIrisIn()" onmouseup="PTZIrisStop()" onmouseout="PTZIrisStop()"></div>
+	<div class="IrisOut" data-toggle="tooltip" title="光圈-" onmousedown="PTZIrisOut()" onmouseup="PTZIrisStop()" onmouseout="PTZIrisStop()"></div>
+	<div style="position: absolute; top: 215px; left: 30px;"><label>窗口分割数&nbsp;</label>
+		<select class="sel2" onchange="changeWndNum(this.value);">
+            <option value="1">1x1</option>
+            <option value="2">2x2</option>
+            <option value="3" selected>3x3</option>
+            <option value="4">4x4</option>
+        </select>
+    </div>
+	
+	<span style="position: absolute; top: 300px; left: 30px; font-size: 16px; font-weight: bolder;">回放</span>
+	<hr width="80%" style="border-top-color: #9E9E9E; position: absolute; top: 310px; left: 30px;"/>
+	
+	<div style="position: absolute; top: 345px; left: 30px;">
+		<div class="input-append date form_datetime2"><label>开始时间&nbsp;</label><input type="text" class="datepicker" id="starttime"/><span class="add-on"><i class="icon-th"></i></span></div>
+		<div class="input-append date form_datetime2"><label>结束时间&nbsp;</label><input type="text" class="datepicker" id="endtime"/><span class="add-on"><i class="icon-th"></i></span></div>
+		<div><input type="button" class="btn btn-default" value="搜索" onclick="clickRecordSearch(0);"/></div>
+		<div id="searchdiv" class="searchdiv" style="display: none;">
+			<table id="searchlist" class="searchlist" cellpadding="0" cellspacing="0" border="0"></table>
+       	</div>
+       	<div id="play_back" class="play_back" data-toggle="tooltip" title="开始回放" onclick="clickStartPlayback()"></div>
+		<div id="stop_back" class="stop_back" data-toggle="tooltip" title="停止回放" onclick="clickStopPlayback()"></div>
+		<div id="fast_back" class="fast_back" data-toggle="tooltip" title="快放" onclick="clickPlayFast()"></div>
+		<div id="slow_back" class="slow_back" data-toggle="tooltip" title="慢放" onclick="clickPlaySlow()"></div>
+		<div id="sleep_back" class="sleep_back" data-toggle="tooltip" title="暂停回放" onclick="clickPause()"></div>
+		<div id="restore_back" class="restore_back" data-toggle="tooltip" title="恢复回放" onclick="clickResume()"></div>
+	</div>
+	
+	
+</div>
+
+<!-- bottom -->
+<div class="down" id="down">
+	<span style="left: 30px; font-size: 12px;">操作信息：</span><span id="opinfo" style="left: 120px; font-size: 12px;"></span>
+	<span></span>
+</div>
+
+</body>
+<script type="text/javascript" src="lib/js/jquery-1.7.1.min.js"></script>
+<!--<script type="text/javascript" src="lib/js/easyui/jquery.min.js"></script>
+--><script type="text/javascript" src="lib/js/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-treeview.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="lib/js/webVideoCtrl.js"></script>
+<script type="text/javascript" src="lib/js/videoManage.js"></script>
+<script type="text/javascript" src="view/video.js"></script>
+</html>

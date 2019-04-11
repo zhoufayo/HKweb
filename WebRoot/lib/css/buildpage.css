@@ -1,0 +1,484 @@
+/* 布局 */
+
+/* 标题 */
+.head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #0E3043;
+}
+
+/* 标题栏 */
+.images span {
+    position: absolute;
+    top: 35px;
+    left: 130px;
+    font-size: 34px;
+    height: 120px;
+    width: 400px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+/* 侧边站点选择 */
+.sidebar {
+    position: absolute;
+    top: 101px;
+    left: 0;
+    /*height: calc(100% - 132px);*/
+    width: 200px;
+   /*border:1px solid rgba(200,200,200,0.75);*/
+}
+
+/* 上方选择视频模式 */
+.selectvideo {
+    position: absolute;
+    top: 105px;
+    left: 200px;
+    height: 40px;
+    width: calc(100% - 500px);
+    border-left :1px solid rgba(200,200,200,0.75);
+    border-top :1px solid rgba(200,200,200,0.75);
+    background: rgba(21, 27, 24, 0.06);
+}
+
+/* 主视屏框架 */
+.video {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+    height: calc(100% - 133px);
+    width: calc(100% - 554px);
+    border:1px solid rgba(200,200,200,0.75);
+}
+
+/* 控制框 */
+.videocontrol {
+    position: absolute;
+    top: 100px;
+    left:calc(100% - 300px);
+    height: calc(100% - 132px);
+    width: 297px;
+    /*border:1px solid rgba(200,200,200,0.75);*/
+    background: rgba(21, 27, 24, 0.06);
+}
+
+/* 控制框 */
+.videocontrolhide {
+    position: absolute;
+    top: 100px;
+    left:calc(100% - 300px);
+    height: calc(100% - 132px);
+    width: 2px;
+    background: rgba(21, 27, 24, 0.06);
+}
+
+/* 底部状态栏 */
+.down {
+    position: absolute;
+    top: calc(100% - 32px);
+    left:0;
+    height: 30px;
+    width:calc(100% - 2px);
+    /*border:1px solid rgba(200,200,200,0.75);*/
+    background: rgba(21, 27, 24, 0.06);
+}
+
+/* 底部状态栏显示 */
+.down span{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 14px;
+    height: 20px;
+    color: black;
+    letter-spacing: 2px;
+}
+
+/* 控制按钮 */
+/* 开始播放 */
+.play {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 30px;
+    top: 40px;
+    background: url('../imgs/control/play.png') ;
+}
+
+.play:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/* 停止播放 */
+.stop {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 75px;
+    top: 40px;
+    background: url('../imgs/control/stop.png') ;
+}
+
+.stop:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/* 抓图 */
+.pic {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 120px;
+    top: 40px;
+    background: url('../imgs/control/pic.png') ;
+}
+
+.pic:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/* 查看 */
+.see {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 165px;
+    top: 40px;
+    background: url('../imgs/control/see.png') ;
+}
+
+.see:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/* 自动聚焦 */
+.focusauto {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 210px;
+    top: 40px;
+    background: url('../imgs/control/focusauto.png') ;
+}
+
+.focusauto:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.leftup {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 30px;
+    top: 85px;
+    background: url('../imgs/control/leftup.png') ;
+}
+
+.leftup:active {
+   border:1px solid rgba(200,200,200,0.75)
+}
+
+.up {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 75px;
+    top: 85px;
+    background: url('../imgs/control/up.png') ;
+}
+
+.up:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.rightup {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 120px;
+    top: 85px;
+    background: url('../imgs/control/rightup.png') ;
+}
+
+.rightup:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.left {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 30px;
+    top: 130px;
+    background: url('../imgs/control/left.png') ;
+}
+
+.left:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.around {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 75px;
+    top: 130px;
+    background: url('../imgs/control/around.png') ;
+}
+
+.around:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.right {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 120px;
+    top: 130px;
+    background: url('../imgs/control/right.png') ;
+}
+
+.right:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.leftdown {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 30px;
+    top: 175px;
+    background: url('../imgs/control/leftdown.png') ;
+}
+
+.leftdown:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.downward {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 75px;
+    top: 175px;
+    background: url('../imgs/control/down.png') ;
+}
+
+.downward:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.rightdown {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 120px;
+    top: 175px;
+    background: url('../imgs/control/rightdown.png') ;
+}
+
+.rightdown:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.ZoomIn {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 190px;
+    top: 85px;
+    background: url('../imgs/control/zoom+.png') ;
+}
+
+.ZoomIn:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.FocusIn {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 190px;
+    top: 130px;
+    background: url('../imgs/control/fous+.png') ;
+}
+
+.FocusIn:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.IrisIn {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 190px;
+    top: 175px;
+    background: url('../imgs/control/iris+.png') ;
+}
+
+.IrisIn:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.ZoomOut {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 230px;
+    top: 85px;
+    background: url('../imgs/control/zoom-.png') ;
+}
+
+.ZoomOut:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.FocusOut {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 230px;
+    top: 130px;
+    background: url('../imgs/control/fous-.png') ;
+}
+
+.FocusOut:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+.IrisOut {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 230px;
+    top: 175px;
+    background: url('../imgs/control/iris-.png') ;
+}
+
+.IrisOut:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/*控制栏的显示与消失*/
+.ptzshow
+{
+    float: right;
+    top: 5px;
+    width:32px;
+    height:32px;
+    background: url('../imgs/control/hide.png') ;
+}
+
+.ptzshow:active {
+    border:1px solid rgba(200,200,200,0.75)
+}
+
+/* 速度选择 */
+.selectseppd{
+    position: absolute;
+    top: 200px;
+    left: 30px;
+    font-size: 15px;
+}
+
+/* 速度选择 */
+.speedlevel{
+    position: absolute;
+    top: 198px;
+    left: 110px;
+}
+
+/* 设置定点巡航的标签 */
+.cruise
+{
+    position: absolute;
+    height:calc(100% - 250px);
+    width:calc(100% - 10px);;
+    left: 4px;
+    top: 245px;
+    border:1px solid #7F9DB9;
+}
+
+/* 设置定点巡航的标题 */
+.cruise span {
+    font-size: 12px;
+}
+
+/* 设置路径 */
+.text
+{
+    position: absolute;
+    height:20px;
+    width:300px;;
+    left: 4px;
+    top: 5px;
+    border:1px solid #7F9DB9;
+}
+
+/* 开始回放 */
+.play_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 0px;
+    top: 120px;
+    background: url('../imgs/control/play.png') ;
+}
+
+/* 停止回放 */
+.stop_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 45px;
+    top: 120px;
+    background: url('../imgs/control/stop.png') ;
+}
+
+/* 快放 */
+.fast_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 90px;
+    top: 120px;
+    background: url('../imgs/control/fast.png') ;
+}
+
+/* 慢放 */
+.slow_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 135px;
+    top: 120px;
+    background: url('../imgs/control/slow.png') ;
+}
+
+/* 暂停回放 */
+.sleep_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 0px;
+    top: 155px;
+    background: url('../imgs/control/sleep.png') ;
+}
+
+/* 恢复回放 */
+.restore_back {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 45px;
+    top: 155px;
+    background: url('../imgs/control/restore.png') ;
+}
+
+
+
+
